@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>品牌管理系统-注册</title>
+    <link rel="shortcut icon" type="image/x-icon" href=" http://localhost:8080/brand_demo01_war/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow-y: scroll;
+            scrollbar-width: none;
+
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        #app {
+            height: 841px;
+            width: 1708px;
+            background-image: url("http://localhost:8080/brand_demo01_war/63406580_p31.jpg");
+            /*background-image: url("/63406580_p31.jpg");*/
+            background-size: contain;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login {
+            width: 400px;
+            height: 480px;
+            background-color: #ecf5ff;
+            /*background-color: rgb(214,249,251);*/
+            border-radius: 10px;
+        }
+
+        .el-form-item {
+            margin-top: 26px;
+            margin-bottom: 30px;
+        }
+
+        form.el-form {
+            padding-right: 40px;
+        }
+
+
+        /*element.style {*/
+        /*    margin-left: 165px;*/
+        /*}*/
+
+
+        .ll {
+            margin: 40px;
+            margin-bottom: 45px;
+            margin-top: 33px;
+            text-align: center;
+            font-size: 35px;
+            font-family: 幼圆;
+            margin-left: 35px;
+        }
+
+        .el-form-item__content {
+            line-height: 40px;
+            position: relative;
+            font-size: 14px;
+            margin-left: 165px;
+        }
+
+        .logonFailure {
+            margin-left: 151px;
+            color: red;
+            height: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div class="login">
+        <div class="ll">
+            注册
+        </div>
+
+        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="用户名" prop="username">
+                <el-input v-model.number="ruleForm.username"></el-input>
+            </el-form-item>
+
+            <el-form-item label="密码" prop="pass">
+                <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+            </el-form-item>
+
+            <el-form-item label="确认密码" prop="checkPass">
+                <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+            </el-form-item>
+
+
+            <div class="logonFailure">
+                <div v-show="registrationFailed">
+                    用户名已注册
+                </div>
+            </div>
+
+            <el-form-item>
+                <el-button type="primary" @click="submitForm1('ruleForm')"
+                           style="margin-left: 5px;padding: 12px 65px;margin-bottom: 5px;">立即注册
+                </el-button>
+                <el-button @click="toLogIn"
+                           style="margin-top: 11px;margin-left: 5px;padding: 12px 80px;margin-bottom: 5px;">登录
+                </el-button>
+            </el-form-item>
+        </el-form>
+
+
+        <!--        <el-form ref="form" :model="user" label-width="80px">-->
+        <!--            <el-form-item label="用户名">-->
+        <!--                <el-input v-model="user.username"></el-input>-->
+        <!--            </el-form-item>-->
+        <!--            <el-form-item label="密码">-->
+        <!--                <el-input v-model="user.password" type="password"></el-input>-->
+        <!--            </el-form-item>-->
+
+        <!--            <div class="logonFailure">-->
+        <!--                <div v-show="logonFailure">-->
+        <!--                    用户名已注册-->
+        <!--                </div>-->
+        <!--            </div>-->
+
+        <!--            <el-form-item>-->
+        <!--                <el-button type="primary" @click="registerUser"-->
+        <!--                           style="margin-left: 48px; padding: 17px 60px; margin-top: 10px;">立即注册-->
+        <!--                </el-button>-->
+        <!--            </el-form-item>-->
+        <!--        </el-form>-->
+
+
+    </div>
+</div>
+
+
+<!--  导入vue-->
+<script src="js/vue.js"></script>
+<!--  导入element-->
+<script src="element-ui/index.js"></script>
+<link rel="stylesheet" href="element-%234E06B3/index.css">
+
+<!--导入axios-->
+<!--<script src="js/axios-0.18.0.js"></script>-->
+
+<script src="js/axios.js"></script>
+
+<script !src="">
+    new Vue({
+        el: "#app",
+        data() {
+
+            var validatePass = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请输入密码'));
+                } else {
+                    if (this.ruleForm.checkPass !== '') {
+                        this.$refs.ruleForm.validateField('checkPass');
+                    }
+                    callback();
+                }
+            };
+            var validatePass2 = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请再次输入密码'));
+                } else if (value !== this.ruleForm.pass) {
+                    callback(new Error('两次输入密码不一致!'));
+                } else {
+                    callback();
+                }
+            };
+            return {
+                ruleForm: {
+                    username: '',
+                    pass: '',
+                    checkPass: '',
+                },
+
+                rules: {
+                    username: [
+                        {required: true, message: '请输入用户名', trigger: 'blur'},
+                        {
+                            pattern: /^[a-zA-Z0-9]{3,10}$/,
+                            message: '用户名必须为英文或数字，长度为3到10个字符',
+                            trigger: 'blur'
+                        }
+                    ],
+                    pass: [
+                        {validator: validatePass, trigger: 'blur'}
+                    ],
+                    checkPass: [
+                        {validator: validatePass2, trigger: 'blur'}
+                    ],
+
+                },
+
+                user: {
+                    username: '',
+                    password: ''
+                },
+
+                registrationFailed: false,
+            };
+        },
+
+
+        // data: {
+        //     user: {
+        //         username: '',
+        //         password: ''
+        //     },
+        //
+        //     logonFailure: false,
+        // },
+
+        methods: {
+
+            //登录方法
+            registerUser() {
+                console.log('submit!');
+
+                //发送ajax请求
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/brand_demo01_war/user/register",
+                    data: this.user
+                }).then((resp) => {
+                    if (resp.data === "success") {
+                        //注册成功
+                        this.registrationFailed = false
+
+                        alert("注册成功！")
+
+                        //跳转到登陆页面
+                        window.location.href = 'Login.html';
+                    } else {
+                        //注册失败
+
+                        //如果成功，提示失败信息
+                        this.registrationFailed = true
+                    }
+                })
+            },
+
+
+            //表单验证方法，通过验证后，执行注册方法
+            submitForm1(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+
+                        this.user.username = this.ruleForm.username
+                        this.user.password = this.ruleForm.pass
+
+                        console.log(this.user)
+
+                        this.registerUser()
+
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            //点击登录按钮，跳转到登录页面
+            toLogIn() {
+                //跳转到登陆页面
+                window.location.href = 'Login.html';
+            }
+        },
+
+    })
+</script>
+</body>
+</html>
