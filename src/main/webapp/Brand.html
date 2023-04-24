@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" type="image/x-icon" href=" http://localhost:8080/brand_demo01_war/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href=" http://localhost:8080/brand_demo02_war/favicon.ico">
     <title>品牌管理系统</title>
     <style>
         * {
@@ -337,7 +337,7 @@
             //     axios({
             //         method: "get",
             //         //url:"http://localhost:8080/brand-demo01/brand/selectAll"
-            //         url: "http://localhost:8080/brand_demo01_war/brand/selectAll"
+            //         url: "http://localhost:8080/brand_demo02_war/brand/selectAll"
             //     }).then((resp) => {
             //         this.tableData = resp.data
 
@@ -350,9 +350,9 @@
                 //当页面加载完成，发送异步请求，获取数据
                 axios({
                     method: "post",
-                    // url: "http://localhost:8080/brand_demo01_war/brand/selectByPage?currentPage="
+                    // url: "http://localhost:8080/brand_demo02_war/brand/selectByPage?currentPage="
                     //     + this.currentPage + "&pageSize=" + this.pageSize
-                    url: `http://localhost:8080/brand_demo01_war/brand/selectByPageAndCondition?currentPage=${this.currentPage}&pageSize=${this.pageSize}`,
+                    url: `http://localhost:8080/brand_demo02_war/brand/selectByPageAndCondition?currentPage=${this.currentPage}&pageSize=${this.pageSize}`,
                     data: this.brand
                 }).then((resp) => {
                     //设置表格数据
@@ -397,7 +397,7 @@
 
                 axios({
                     method: "post",
-                    url: "http://localhost:8080/brand_demo01_war/brand/add",
+                    url: "http://localhost:8080/brand_demo02_war/brand/add",
                     data: _this.brandAdd
                 }).then(function (resp) {
                     if (resp.data === "success") {
@@ -436,7 +436,7 @@
 
                 axios({
                     method: "post",
-                    url: "http://localhost:8080/brand_demo01_war/brand/update",
+                    url: "http://localhost:8080/brand_demo02_war/brand/update",
                     data: _this.brandEdition
                 }).then(function (resp) {
                     if (resp.data === "success") {
@@ -474,7 +474,7 @@
 
                     axios({
                         method: "get",
-                        url: "http://localhost:8080/brand_demo01_war/brand/deleteById?id=" + this.brand.id
+                        url: "http://localhost:8080/brand_demo02_war/brand/deleteById?id=" + this.brand.id
                     }).then(function (resp) {
                         if (resp.data === "success") {
                             //如果响应数据为 success 则删除成功
@@ -521,7 +521,7 @@
                         //发送ajax请求
                         axios({
                             method: "post",
-                            url: "http://localhost:8080/brand_demo01_war/brand/deleteByIds",
+                            url: "http://localhost:8080/brand_demo02_war/brand/deleteByIds",
                             data: this.selectIds
 
                         }).then((resp) => {

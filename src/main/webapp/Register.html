@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>品牌管理系统-注册</title>
-    <link rel="shortcut icon" type="image/x-icon" href=" http://localhost:8080/brand_demo01_war/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href=" http://localhost:8080/brand_demo02_war/favicon.ico">
     <style>
         * {
             margin: 0;
@@ -23,7 +23,7 @@
         #app {
             height: 841px;
             width: 1708px;
-            background-image: url("http://localhost:8080/brand_demo01_war/63406580_p31.jpg");
+            background-image: url("http://localhost:8080/brand_demo02_war/63406580_p31.jpg");
             /*background-image: url("/63406580_p31.jpg");*/
             background-size: contain;
 
@@ -233,7 +233,7 @@
                 //发送ajax请求
                 axios({
                     method: "post",
-                    url: "http://localhost:8080/brand_demo01_war/user/register",
+                    url: "http://localhost:8080/brand_demo02_war/user/register",
                     data: this.user
                 }).then((resp) => {
                     if (resp.data === "success") {
