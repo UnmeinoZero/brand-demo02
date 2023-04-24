@@ -7,6 +7,7 @@ import com.uzero.service.BrandService;
 import com.uzero.util.SqlSessionFactoryUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @version 1.0
  * creats 2023-02-20  15:07:26
  */
+@Service
 public class BrandServiceImpl implements BrandService {
 
     //创建 SqlSessionFactory 工厂对象

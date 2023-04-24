@@ -87,47 +87,4 @@ public interface BrandMapper {
      * @return
      */
     int selectTotalCountByCondition(Brand brand);
-
-
-    /**
-     * 查询详情： 更具id查询
-     */
-
-    //Brand selectById(int id);
-
-
-    /**
-     * 多条件查询
-     * 参数接受
-     * 1.散装参数：如果方法中有多个参数，需要使用 @Param("SQL参数占位符名称")
-     * 2.对象参数：对象的属性名称要和参数占位符名称一致
-     * 3.map集合参数：
-     *
-     * @param status
-     * @param companyName
-     * @param brandName
-     * @return
-     */
-    //List<Brand> selectByCondition(@Param("status") int status,
-    //@Param("companyName") String companyName,
-    //@Param("brandName") String brandName);
-
-    //List<Brand> selectByCondition(Brand brand);
-
-    //List<Brand> selectByCondition(Map map);
-
-
-    /**
-     * 单条件动态查询
-     *
-     * @param map
-     * @return
-     */
-    //List<Brand> selectByConditionSingle(Brand brand);
-
-
-    /**
-     * 删除多个数据
-     */
-    //void deleteByIds(@Param("ids") int[] ids);
 }

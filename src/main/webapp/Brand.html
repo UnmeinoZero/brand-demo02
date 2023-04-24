@@ -390,7 +390,6 @@
 
             //新增数据
             addBrand() {
-
                 console.log("提交")
                 let _this = this
                 //发送ajax异步请求添加数据
@@ -416,8 +415,9 @@
                         });
                     }
                 })
+                //删除模型数据
+                this.brandAdd = {}
             },
-
 
             //修改数据，数据回显方法
             edit(row) {
@@ -457,7 +457,6 @@
                 })
             },
 
-
             //根据Id删除对应的数据
             deleteById(row) {
                 this.brand.id = row.id
@@ -468,7 +467,6 @@
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
-
 
                 }).then(() => {  //选择确定删除
 
@@ -497,7 +495,6 @@
                     })
                 })
             },
-
 
             //批量删除
             deleteByIds: function () {
@@ -554,7 +551,6 @@
                 }
             },
 
-
             //分页
             handleSizeChange(val) {
                 //console.log(`每页 ${val} 条`);
@@ -575,7 +571,6 @@
                 this.selectByPage()
             },
 
-
             //表单验证方法，如果通过验证，则添加数据
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
@@ -589,13 +584,11 @@
                 });
             },
 
-
             //退出登录方法，跳转到登录页面
             logOut() {
                 //跳转到登陆页面
                 window.location.href = 'Login.html';
             },
-
 
             //导航方法
             handleOpen(key, keyPath) {
@@ -631,14 +624,11 @@
                     desc: ''
                 },
 
-
                 //新增数据对话框是否展示
                 dialogVisible: false,
 
-
                 //修改数据的对话框是否显示
                 editDialogVisible: false,
-
 
                 //品牌模型数据
                 brand: {
@@ -650,7 +640,7 @@
                     description: ''
                 },
 
-
+                //修改品牌模型数据
                 brandEdition: {
                     id: '',
                     brandName: '',
@@ -660,26 +650,24 @@
                     status: ''
                 },
 
+                //添加品牌模型数据
                 brandAdd: {
                     id: '',
                     brandName: '',
                     companyName: '',
                     ordered: '',
                     description: '',
-                    status: ''
+                    status: 0
                 },
 
                 //被选中的id数组
                 selectIds: [],
 
-
                 //复选框选中数据
                 multipleSelection: [],
 
-
                 //表格数据
                 tableData: [],
-
 
                 rules: {
                     brandName: [

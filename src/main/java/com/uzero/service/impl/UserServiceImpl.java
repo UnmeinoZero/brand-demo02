@@ -6,12 +6,14 @@ import com.uzero.service.UserService;
 import com.uzero.util.SqlSessionFactoryUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Service;
 
 /**
  * @author 千叶零
  * @version 1.0
  * creats 2023-02-10  16:11:17
  */
+@Service
 public class UserServiceImpl implements UserService {
     SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
 
